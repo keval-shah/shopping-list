@@ -1,6 +1,6 @@
 package uk.co.kevalshah.shoppinglist;
 
-import android.app.ListActivity;
+import android.app.ExpandableListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
-public class ShoppingListManagerActivity extends ListActivity {
+public class ShoppingListManagerActivity extends ExpandableListActivity {
 
     private static final int ADD_SHOPPING_ITEM_REQUEST = 0;
 
@@ -20,7 +20,7 @@ public class ShoppingListManagerActivity extends ListActivity {
         adapter = new ShoppingListAdapter(getApplicationContext());
 
         //Add an add item footer to the list view
-        final ListView listView = getListView();
+        final ListView listView = getExpandableListView();
         listView.setFooterDividersEnabled(true);
         final View addItemFooter = getLayoutInflater().inflate(R.layout.item_list_footer, listView, false);
         listView.addFooterView(addItemFooter);
@@ -38,6 +38,8 @@ public class ShoppingListManagerActivity extends ListActivity {
     public boolean onCreateOptionsMenu(final Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_shopping_list, menu);
+
+        menu.add(Menu.NONE, 0, 0, "Add");
         return true;
     }
 
@@ -49,7 +51,11 @@ public class ShoppingListManagerActivity extends ListActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+        if (id == 0) {
+            onAdd();
             return true;
         }
 
