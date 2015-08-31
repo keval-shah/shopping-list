@@ -28,12 +28,19 @@
         android:layout_below="@id/itemName"
         />
 
+    <Spinner
+        android:id="@+id/categoriesSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/quantityField"
+        />
+
     <Button
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/add_button_label"
-        android:layout_below="@id/quantityField"
+        android:layout_below="@id/categoriesSpinner"
         />
 
     <Button
@@ -41,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cancel_button_label"
-        android:layout_below="@id/quantityField"
+        android:layout_below="@id/categoriesSpinner"
         android:layout_toEndOf="@id/addButton"
         />
 </RelativeLayout>
