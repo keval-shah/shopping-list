@@ -5,4 +5,5 @@
     <string name="add_new_item_button_label">Add new item</string>
     <string name="add_button_label">Save</string>
     <string name="cancel_button_label">Cancel</string>
+    <string name="quantity_field_label">Quantity</string>
 </resources>
