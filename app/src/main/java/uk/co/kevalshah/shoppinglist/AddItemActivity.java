@@ -1,6 +1,7 @@
 package uk.co.kevalshah.shoppinglist;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +24,7 @@ public class AddItemActivity extends Activity {
             }
         });
 
-        final Button addButton = (Button) findViewById(R.id.saveButton);
+        final Button addButton = (Button) findViewById(R.id.addButton);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,8 +39,10 @@ public class AddItemActivity extends Activity {
     }
 
     private void onAdd() {
-        //todo: make an intent containing the data for the item and send back to the starting activity
-        setResult(RESULT_OK);
+        final Intent itemDataIntent = new Intent();
+        itemDataIntent.putExtra(Item.ITEM_NAME, "Test");
+        itemDataIntent.putExtra(Item.QUANTITY, 1);
+        setResult(RESULT_OK, itemDataIntent);
         finish();
     }
 }

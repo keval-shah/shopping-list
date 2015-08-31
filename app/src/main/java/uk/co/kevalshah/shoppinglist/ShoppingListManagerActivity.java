@@ -1,28 +1,37 @@
 package uk.co.kevalshah.shoppinglist;
 
+import android.app.ListActivity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ListView;
 
-public class ShoppingList extends AppCompatActivity {
+public class ShoppingListManagerActivity extends ListActivity {
 
     private static final int ADD_SHOPPING_ITEM_REQUEST = 0;
+
+    private ShoppingListAdapter adapter;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shopping_list);
+        adapter = new ShoppingListAdapter(getApplicationContext());
 
-        final Button addButton = (Button) findViewById(R.id.addButton);
-        addButton.setOnClickListener(new View.OnClickListener() {
+        //Add an add item footer to the list view
+        final ListView listView = getListView();
+        listView.setFooterDividersEnabled(true);
+        final View addItemFooter = getLayoutInflater().inflate(R.layout.item_list_footer, listView, false);
+        listView.addFooterView(addItemFooter);
+        addItemFooter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onAdd();
             }
         });
+
+        setListAdapter(adapter);
     }
 
     @Override
@@ -54,6 +63,11 @@ public class ShoppingList extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+        if (ADD_SHOPPING_ITEM_REQUEST == requestCode) {
+            if (RESULT_OK == resultCode) {
+                final Item item = new Item(data);
+                adapter.add(item);
+            }
+        }
     }
 }
