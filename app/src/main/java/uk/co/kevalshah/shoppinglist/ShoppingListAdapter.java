@@ -17,7 +17,7 @@ public class ShoppingListAdapter extends BaseAdapter {
 
     private static final String TAG = "ShoppingListAdapter";
 
-    private final List<Item> items = new ArrayList<Item>();
+    private final List<Item> items = new ArrayList<>();
     private final Context context;
 
     public ShoppingListAdapter(Context context) {
@@ -45,17 +45,30 @@ public class ShoppingListAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(final int position, final View convertView, final ViewGroup parent) {
+    public boolean hasStableIds() {
+        return false;
+    }
 
-        View row = convertView;
-        if (row == null) {
-            row = LayoutInflater.from(context).inflate(R.layout.item, parent, false);
+    @Override
+    public View getView(final int position, View convertView, final ViewGroup parent) {
+        ViewHolder holder;
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.item, parent, false);
+            holder = new ViewHolder();
+            holder.itemText = (TextView) convertView.findViewById(R.id.item);
+
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
 
         final Item item = items.get(position);
-        final TextView textView = (TextView) row.findViewById(R.id.item);
-        textView.setText(item.getDescription());
+        holder.itemText.setText(item.getDescription());
 
-        return row;
+        return convertView;
+    }
+
+    static class ViewHolder {
+        TextView itemText;
     }
 }
