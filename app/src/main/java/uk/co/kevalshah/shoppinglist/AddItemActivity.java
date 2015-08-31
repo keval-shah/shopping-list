@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+
 
 /**
  * Created by Keval on 23/08/2015.
@@ -39,9 +41,16 @@ public class AddItemActivity extends Activity {
     }
 
     private void onAdd() {
+        final EditText itemNameView = (EditText) findViewById(R.id.itemName);
+        final String itemName = itemNameView.getText().toString();
+
+        final EditText quantityFieldView = (EditText) findViewById(R.id.quantityField);
+        final String quantityStr = quantityFieldView.getText().toString();
+        final int quantity = "".equals(quantityStr) ? 0 : Integer.valueOf(quantityStr);
+
         final Intent itemDataIntent = new Intent();
-        itemDataIntent.putExtra(Item.ITEM_NAME, "Test");
-        itemDataIntent.putExtra(Item.QUANTITY, 1);
+        itemDataIntent.putExtra(Item.ITEM_NAME, itemName);
+        itemDataIntent.putExtra(Item.QUANTITY, quantity);
         setResult(RESULT_OK, itemDataIntent);
         finish();
     }
