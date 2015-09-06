@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.Spinner;
 
 
@@ -21,6 +22,7 @@ public class AddItemActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_item);
 
+        setupQuantityPicker();
         setupCategoriesSpinner();
 
         final Button cancelButton = (Button) findViewById(R.id.cancelButton);
@@ -38,6 +40,12 @@ public class AddItemActivity extends Activity {
                 onAdd();
             }
         });
+    }
+
+    private void setupQuantityPicker() {
+        final NumberPicker quantityPicker = (NumberPicker) findViewById(R.id.quantityPicker);
+        quantityPicker.setMinValue(0);
+        quantityPicker.setMaxValue(9);
     }
 
     private void setupCategoriesSpinner() {
@@ -68,9 +76,8 @@ public class AddItemActivity extends Activity {
         final EditText itemNameView = (EditText) findViewById(R.id.itemName);
         final String itemName = itemNameView.getText().toString();
 
-        final EditText quantityFieldView = (EditText) findViewById(R.id.quantityField);
-        final String quantityStr = quantityFieldView.getText().toString();
-        final int quantity = "".equals(quantityStr) ? 0 : Integer.valueOf(quantityStr);
+        final NumberPicker quantityPicker = (NumberPicker) findViewById(R.id.quantityPicker);
+        final int quantity = quantityPicker.getValue();
 
         final Spinner categoriesSpinner = (Spinner) findViewById(R.id.categoriesSpinner);
         final String selectedCategory = categoriesSpinner.getSelectedItem().toString();

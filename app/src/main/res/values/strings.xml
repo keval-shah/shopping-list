@@ -6,8 +6,12 @@
     <string name="add_button_label">Save</string>
     <string name="cancel_button_label">Cancel</string>
     <string name="quantity_field_label">Quantity</string>
+    <string name="category_field_label">Category</string>
+    <string name="item_field_label">Item</string>
+    <string name="item_field_hint">Enter item...</string>
     <string-array name="categories_array">
-        <item>Fruit</item>
+        <item>Dairy</item>
         <item>Frozen</item>
+        <item>Fruit</item>
     </string-array>
 </resources>

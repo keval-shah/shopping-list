@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_marginTop="@dimen/activity_vertical_margin"
+              android:layout_marginBottom="@dimen/activity_vertical_margin"
+              android:layout_marginLeft="@dimen/activity_horizontal_margin"
+              android:layout_marginRight="@dimen/activity_horizontal_margin"
+    >
+
+    <TextView
+        android:id="@+id/itemLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/item_field_label"
+        android:textSize="@dimen/abc_text_size_body_1_material"
+        android:labelFor="@+id/quantityField"
+        />
 
     <EditText
         android:id="@+id/itemName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter item..."
+        android:hint="@string/item_field_hint"
         />
 
     <TextView
@@ -16,39 +30,57 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/quantity_field_label"
-        android:labelFor="@+id/quantityField"
-        android:layout_below="@id/itemName"
+        android:textSize="@dimen/abc_text_size_body_1_material"
+        android:labelFor="@+id/quantityPicker"
         />
 
-    <EditText
-        android:id="@+id/quantityField"
-        android:layout_width="match_parent"
+    <NumberPicker
+        android:id="@+id/quantityPicker"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"
-        android:layout_below="@id/itemName"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        />
+
+    <TextView
+        android:id="@+id/categoryLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/category_field_label"
+        android:textSize="@dimen/abc_text_size_body_1_material"
+        android:labelFor="@+id/categoriesSpinner"
         />
 
     <Spinner
         android:id="@+id/categoriesSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/quantityField"
         />
 
-    <Button
-        android:id="@+id/addButton"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/add_button_label"
-        android:layout_below="@id/categoriesSpinner"
-        />
+        android:orientation="horizontal"
+        style="?android:attr/buttonBarButtonStyle">
 
-    <Button
-        android:id="@+id/cancelButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cancel_button_label"
-        android:layout_below="@id/categoriesSpinner"
-        android:layout_toEndOf="@id/addButton"
-        />
-</RelativeLayout>
+        <Button
+            android:id="@+id/addButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/add_button_label"
+            android:textSize="@dimen/abc_text_size_button_material"
+            style="?android:attr/buttonBarButtonStyle"
+            />
+
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/cancel_button_label"
+            android:textSize="@dimen/abc_text_size_button_material"
+            style="?android:attr/buttonBarButtonStyle"
+            />
+    </LinearLayout>
+</LinearLayout>
